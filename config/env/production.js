@@ -21,7 +21,7 @@ module.exports = {
     format: process.env.LOG_FORMAT || 'combined',
     fileLogger: {
       directoryPath: process.env.LOG_DIR_PATH || process.cwd(),
-      fileName: process.env.LOG_FILE || 'app.log',
+      fileName: process.env.LOG_FILE || 'npm-debug.log',
       maxsize: 10485760,
       maxFiles: 2,
       json: false
