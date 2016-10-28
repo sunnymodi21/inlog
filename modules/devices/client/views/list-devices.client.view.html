@@ -1,0 +1,30 @@
+<div  ng-repeat="device in vm.devices | filter:query">   
+								   <div class="col-sm-3 col-md-3">
+                                       
+    <div class="thumbnail">
+       <div class="caption">
+           
+                <h3 style="word-wrap: break-word">{{device.name}}</h3>
+           
+		</div>	
+		<hr role="separator" class="divider">
+            <p align="center">
+                <a class="btn btn-link" ng-click="vm.openViewModal(device._id)">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                </a>  
+                
+                <a class="btn btn-link" ng-click="vm.openEditModal(device._id)">
+                        <i class="glyphicon glyphicon-edit"></i>
+                </a>  
+                
+                <a class="btn btn-link" ng-click="vm.openDeleteModal(device._id)">
+                        <i class="glyphicon glyphicon-trash"></i>
+                </a>  
+                
+            </p>
+    
+      
+      </div>
+
+  </div>  
+                                   </div>

@@ -1,0 +1,10 @@
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"  ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">View device</h4>
+</div> 
+<div class="modal-body">
+    <ng-include src="'modules/devices/client/views/view-device.client.view.html'"></ng-include>
+</div>
+ <div class="modal-footer">
+        <button type="button" class="btn btn-default"  ng-click="cancel()" data-dismiss="modal">Cancel</button>
+      </div>

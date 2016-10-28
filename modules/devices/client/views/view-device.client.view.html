@@ -1,0 +1,15 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.device.name"></h1>
+  </div>
+
+  <label>Device ID</label>
+    <p class="lead" ng-bind="vm.device.deviceID"></p>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.device.created | date:'mediumDate'"></span>
+      </em>
+  </small>
+
+</section>
