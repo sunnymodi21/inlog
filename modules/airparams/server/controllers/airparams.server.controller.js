@@ -130,7 +130,7 @@ exports.deviceBydeviceID = function (req, res, next,deviceID) {
         message: 'Invalid device'
       });
     }
-    console.log(device,req.user._id);
+    //console.log(device,req.user._id);
     if(device.user!=req.user._id){
       return res.status(404).send({
         message: 'Invalid device'
