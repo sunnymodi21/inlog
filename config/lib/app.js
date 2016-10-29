@@ -52,12 +52,6 @@ module.exports.start = function start(callback) {
       if (config.meanjs['meanjs-version'])
         console.log(chalk.green('MEAN.JS version: ' + config.meanjs['meanjs-version']));
       console.log('--');
-      var stdo = require('fs').createWriteStream('log.txt');
-process.stdout.write = (function(write) {
-        return function(string, encoding, fd) {
-                stdo.write(string);
-        }
-})(process.stdout.write)
       if (callback) callback(app, db, config);
     });
 

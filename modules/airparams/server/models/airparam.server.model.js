@@ -16,8 +16,8 @@ var AirParamSchema = new Schema({
     },
     unit:{
       type:String,
-      enum: ['kg'],
-      default: ['kg']
+      enum: ['ppm'],
+      default: ['ppm']
     }
   },
   dustpm25: {
@@ -26,8 +26,8 @@ var AirParamSchema = new Schema({
     },
     unit:{
       type:String,
-      enum: ['kg'],
-      default: ['kg']
+      enum: ['ppm'],
+      default: ['ppm']
     }
   },dustpm10: {
     value:{
@@ -35,8 +35,8 @@ var AirParamSchema = new Schema({
     },
     unit:{
       type:String,
-      enum: ['kg'],
-      default: ['kg']
+      enum: ['ppm'],
+      default: ['ppm']
   }
 },
     noise:{
@@ -45,8 +45,8 @@ var AirParamSchema = new Schema({
     },
     unit:{
       type:String,
-      enum: ['kg'],
-      default: ['kg']
+      enum: ['dB'],
+      default: ['dB']
   }
   },temperature: {
     value:{
@@ -54,8 +54,8 @@ var AirParamSchema = new Schema({
     },
     unit:{
       type:String,
-      enum: ['kg'],
-      default: ['kg']
+      enum: ['C'],
+      default: ['C']
     }
   },
   humidity: {
@@ -64,8 +64,8 @@ var AirParamSchema = new Schema({
     },
     unit:{
       type:String,
-      enum: ['kg'],
-      default: ['kg']
+      enum: ['%'],
+      default: ['%']
     }
   },
    device: {

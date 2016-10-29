@@ -112,6 +112,7 @@ exports.userByToken = function (req, res, next, token) {
         message: 'Invalid Token'
       });
     }
+    req.user=user;
     next();
   });
 };
@@ -125,6 +126,12 @@ exports.deviceBydeviceID = function (req, res, next,deviceID) {
         message: errorHandler.getErrorMessage(err)
       });
     } else if (!device) {
+      return res.status(404).send({
+        message: 'Invalid device'
+      });
+    }
+    console.log(device,req.user._id);
+    if(device.user!=req.user._id){
       return res.status(404).send({
         message: 'Invalid device'
       });
