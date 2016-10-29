@@ -41,6 +41,7 @@
 
       function successCallback(res) {
        $uibModalInstance.dismiss();
+        $state.go('devices.create');
       }
 
       function errorCallback(res) {

@@ -61,7 +61,7 @@
     
     // open a model
     function openEditModal(deviceId){
-         console.log(deviceId);
+         //console.log(deviceId);
           var modalInstance  = $uibModal.open({
             templateUrl: 'modules/devices/client/views/modaledit-device.client.view.html',
             controller: 'DevicesModalEditController',
@@ -90,7 +90,7 @@
     
     // open a model
     function openDeleteModal(deviceId){
-         console.log(deviceId);
+         //console.log(deviceId);
           var modalInstance  = $uibModal.open({
             templateUrl: 'modules/devices/client/views/modaldelete-device.client.view.html',
             controller: 'DevicesModalDeleteController',
