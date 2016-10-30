@@ -1,0 +1,238 @@
+<section>
+  <div class="page-header">
+    <h1>Documentation</h1>
+  </div>
+<h3 id="send-values-to-one-variable">Send values</h3>
+
+<blockquote>
+<p>Http Request to send values</p>
+</blockquote>
+<pre class="highlight shell"><code>POST /api/token/deviceid HTTP/1.1
+Host: healthnow.herokuapp.com
+Content-Type: application/json
+
+{"body":{"effective_time_frame":{"date_time":1464661469000},"co2":{"value":142},"dustpm25":{"value":152},"dustpm10":{"value":142},"noise":{"value":152},"temperature":{"value":425},"humidity":{"value":524}}}
+</code></pre>
+<blockquote>
+<p>Example request to send values with time</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># Request</span>
+<code>
+curl -X POST -H <span class="s2">"Content-Type: application/json"</span> -d <span class="s1">'{"body":{"effective_time_frame":{"date_time":1464661469000},"co2":{"value":142},"dustpm25":{"value":152},"dustpm10":{"value":142},"noise":{"value":152},"temperature":{"value":425},"humidity":{"value":524}}}'</span>https://healthnow.herokuapp.com/api/airparams/fhkjfhxfdjhph/testid</code></pre>
+
+<pre class="highlight json">
+  <span class="c"># Response</span>
+  <code>{
+  "__v": 0,
+  "device": {
+    "_id": "58159234454a77bc1cc0e2d4",
+    "name": "asda",
+    "deviceID": "adsasdad"
+  },
+  "_id": "58162b49988269641c01d63a",
+  "created": "2016-10-30T17:18:01.346Z",
+  "body": {
+    "effective_time_frame": {
+      "date_time": "2019-08-01T12:11:09.000Z"
+    },
+    "humidity": {
+      "value": 524,
+      "unit": "%"
+    },
+    "temperature": {
+      "value": 425,
+      "unit": "C"
+    },
+    "noise": {
+      "value": 152,
+      "unit": "dB"
+    },
+    "dustpm10": {
+      "value": 142,
+      "unit": "ppm"
+    },
+    "dustpm25": {
+      "value": 152,
+      "unit": "ppm"
+    },
+    "co2": {
+      "value": 142,
+      "unit": "ppm"
+    }
+  }
+}</code></pre>
+<h3 id="send-values-to-one-variable">Get values</h3>
+
+<blockquote>
+<p>Http Request to send values</p>
+</blockquote>
+<pre class="highlight shell"><code>GET /api/token/deviceidHTTP/1.1
+Host: healthnow.herokuapp.com
+</code></pre>
+<blockquote>
+<p>Example request to get values</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># Sample Request</span>
+<code>
+curl GET https://healthnow.herokuapp.com/api/airparams/fhkjfhxfdjhph/testid</code></pre>
+
+<pre class="highlight json">
+  <span class="c"># Sample Response</span>
+  <code>[
+  {
+    "_id": "58161c426113fc4004bbf3f7",
+    "device": {
+      "_id": "58159234454a77bc1cc0e2d4",
+      "name": "asda",
+      "deviceID": "adsasdad"
+    },
+    "__v": 0,
+    "created": "2016-10-30T17:31:00.742Z",
+    "body": {
+      "effective_time_frame": {
+        "date_time": "2016-10-30T16:13:54.930Z"
+      },
+      "humidity": {
+        "value": 524,
+        "unit": "%"
+      },
+      "temperature": {
+        "value": 425,
+        "unit": "C"
+      },
+      "noise": {
+        "value": 152,
+        "unit": "dB"
+      },
+      "dustpm10": {
+        "value": 142,
+        "unit": "ppm"
+      },
+      "dustpm25": {
+        "value": 152,
+        "unit": "ppm"
+      },
+      "co2": {
+        "value": 142,
+        "unit": "ppm"
+      }
+    }
+  },
+  {
+    "_id": "58161d24446f4dcc08ba013a",
+    "device": {
+      "_id": "58159234454a77bc1cc0e2d4",
+      "name": "asda",
+      "deviceID": "adsasdad"
+    },
+    "__v": 0,
+    "created": "2016-10-30T17:31:00.744Z",
+    "body": {
+      "effective_time_frame": {
+        "date_time": "2016-10-30T16:17:40.541Z"
+      },
+      "humidity": {
+        "value": 524,
+        "unit": "%"
+      },
+      "temperature": {
+        "value": 425,
+        "unit": "C"
+      },
+      "noise": {
+        "value": 152,
+        "unit": "dB"
+      },
+      "dustpm10": {
+        "value": 142,
+        "unit": "ppm"
+      },
+      "dustpm25": {
+        "value": 152,
+        "unit": "ppm"
+      },
+      "co2": {
+        "value": 142,
+        "unit": "ppm"
+      }
+    }
+  },
+  {
+    "_id": "58161d51446f4dcc08ba013b",
+    "device": {
+      "_id": "58159234454a77bc1cc0e2d4",
+      "name": "asda",
+      "deviceID": "adsasdad"
+    },
+    "__v": 0,
+    "created": "2016-10-30T17:31:00.746Z",
+    "body": {
+      "effective_time_frame": {
+        "date_time": "2016-10-30T16:18:25.792Z"
+      },
+      "humidity": {
+        "value": 524,
+        "unit": "%"
+      },
+      "temperature": {
+        "value": 425,
+        "unit": "C"
+      },
+      "noise": {
+        "value": 152,
+        "unit": "dB"
+      },
+      "dustpm10": {
+        "value": 142,
+        "unit": "ppm"
+      },
+      "dustpm25": {
+        "value": 152,
+        "unit": "ppm"
+      },
+      "co2": {
+        "value": 142,
+        "unit": "ppm"
+      }
+    }
+  },
+  {
+    "_id": "58161f957f66b45c2076551c",
+    "device": {
+      "_id": "58159234454a77bc1cc0e2d4",
+      "name": "asda",
+      "deviceID": "adsasdad"
+    },
+    "__v": 0,
+    "created": "2016-10-30T17:31:00.749Z",
+    "body": {
+      "effective_time_frame": {
+        "date_time": "2016-10-30T16:28:05.219Z"
+      },
+      "humidity": {
+        "value": 524,
+        "unit": "%"
+      },
+      "temperature": {
+        "value": 425,
+        "unit": "C"
+      },
+      "noise": {
+        "value": 152,
+        "unit": "dB"
+      },
+      "dustpm10": {
+        "value": 142,
+        "unit": "ppm"
+      },
+      "dustpm25": {
+        "value": 152,
+        "unit": "ppm"
+      },
+      "co2": {
+        "value": 142,
+        "unit": "ppm"
+      }
+    }
+  }
+]</code></pre>

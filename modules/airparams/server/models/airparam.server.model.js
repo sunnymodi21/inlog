@@ -79,6 +79,10 @@ var AirParamSchema = new Schema({
       default: Date.now
   }}
   },
+  created:{
+      type:Date,
+      default: Date.now
+  },
    device: {
     type: Schema.ObjectId,
     required: 'Please give a value for device',

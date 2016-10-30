@@ -82,7 +82,7 @@ exports.delete = function (req, res) {
  * List of airparams
  */
 exports.list = function (req, res) {
-  AirParam.find().sort('-created').populate('device.deviceID').exec(function (err, airparams) {
+  AirParam.find({device:req.body.device._id}).sort('-created').populate('device','deviceID name').exec(function (err, airparams) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -118,10 +118,10 @@ exports.userByToken = function (req, res, next, token) {
 };
 
 exports.deviceBydeviceID = function (req, res, next,deviceID) {
-  
-    Device.findOne({deviceID:deviceID},function (err, device) {
+  console.log(deviceID,req.user._id)
+    Device.findOne({deviceID:deviceID,user:req.user._id}).select('deviceID name').exec(function (err, device) {
     if (err) {
-      //console.log(err)
+      console.log(err)
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -130,12 +130,8 @@ exports.deviceBydeviceID = function (req, res, next,deviceID) {
         message: 'Invalid device'
       });
     }
-    //console.log(device,req.user._id);
-    if(device.user!=req.user._id){
-      return res.status(404).send({
-        message: 'Invalid device'
-      });
-    }
+    console.log(device);
+    
     //console.log(device)
     req.body.device=device;
     next();
