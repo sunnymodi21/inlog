@@ -24,6 +24,7 @@ var DeviceSchema = new Schema({
   },
    user: {
     type: Schema.ObjectId,
+    required: 'Please login and try again',
     ref: 'User'
   }
 });
