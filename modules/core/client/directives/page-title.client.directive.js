@@ -18,7 +18,7 @@
       $rootScope.$on('$stateChangeSuccess', listener);
 
       function listener(event, toState) {
-        var applicationCoreTitle = 'API',
+        var applicationCoreTitle = 'Inlog- IOT for all',
           separeteBy = ' - ';
         if (toState.data && toState.data.pageTitle) {
           var stateTitle = $interpolate(toState.data.pageTitle)($state.$current.locals.globals);
