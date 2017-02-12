@@ -9,47 +9,47 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
- * Invoke airparams Permissions
+ * Invoke things Permissions
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/airparams/:token',
+      resources: '/api/things/:token',
       permissions: '*'
     }, {
-      resources: '/api/airparams/:token/:airparamId',
+      resources: '/api/things/:token/:thingId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/airparams/:token',
+      resources: '/api/things/:token',
       permissions: ['get']
     }, {
-      resources: '/api/airparams/:token/:airparamId',
+      resources: '/api/things/:token/:thingId',
       permissions: ['get']
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/airparams/:token',
+      resources: '/api/things/:token',
       permissions: ['get']
     }, {
-      resources: '/api/airparams/:token/:airparamId',
+      resources: '/api/things/:token/:thingId',
       permissions: ['get']
     }]
   }]);
 };
 
 /**
- * Check If airparams Policy Allows
+ * Check If things Policy Allows
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
-  // If an airparam is being processed and the current user created it then allow any manipulation
-  if (req.airparam && req.user && req.airparam.user && req.airparam.user.id === req.user.id) {
+  // If an thing is being processed and the current user created it then allow any manipulation
+  if (req.thing && req.user && req.thing.user && req.thing.user.id === req.user.id) {
     return next();
   }
 

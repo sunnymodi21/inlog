@@ -7,56 +7,52 @@
 <blockquote>
 <p>Http Request to send values</p>
 </blockquote>
-<pre class="highlight shell"><code>POST /api/token/deviceid HTTP/1.1
+<pre class="highlight shell"><code>POST /api/things/{token}/{deviceid} HTTP/1.1
 Host: healthnow.herokuapp.com
 Content-Type: application/json
 
-{"body":{"effective_time_frame":{"date_time":1464661469000},"co2":{"value":12},"dustpm25":{"value":52},"dustpm10":{"value":42},"noise":{"value":12},"temperature":{"value":45},"humidity":{"value":74}}}</code></pre>
+{"body":{"data":{"co2":{"value":12},"dustpm25":{"value":52},"dustpm10":{"value":42},"noise":{"value":12},"temperature":{"value":45},"humidi":{"value":74}},"effective_time_frame": {"date_time": 1464661469000}}}</code></pre>
 <blockquote>
 <p>Example request to send values with time</p>
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># Request</span>
 <code>
-curl -X POST -H <span class="s2">"Content-Type: application/json"</span> -d <span class="s1">'{"body":{"effective_time_frame":{"date_time":1464661469000},"co2":{"value":142},"dustpm25":{"value":152},"dustpm10":{"value":142},"noise":{"value":152},"temperature":{"value":425},"humidity":{"value":524}}}'</span>https://healthnow.herokuapp.com/api/airparams/fhkjfhxfdjhph/testid</code></pre>
+curl -X POST -H <span class="s2">"Content-Type: application/json"</span> -d <span class="s1">'{"body":{"effective_time_frame":{"date_time":1464661469000},"co2":{"value":142},"dustpm25":{"value":152},"dustpm10":{"value":142},"noise":{"value":152},"temperature":{"value":425},"humidity":{"value":524}}}'</span>https://healthnow.herokuapp.com/api/things/fhkjfhxfdjhph/testid</code></pre>
 
 <pre class="highlight json">
   <span class="c"># Response</span>
   <code>{
   "__v": 0,
   "device": {
-    "_id": "5814834485866103009e8db0",
+    "_id": "58a094bb40701ab003002315",
     "name": "test",
-    "deviceID": "testid"
+    "deviceID": "thing"
   },
-  "_id": "58163bb39b9bc003002fe0a8",
-  "created": "2016-10-30T18:28:03.196Z",
+  "_id": "58a09c335227a0500f8ce1bf",
+  "created": "2017-02-12T17:32:35.345Z",
   "body": {
+    "data": {
+      "humidi": {
+        "value": 74
+      },
+      "temperature": {
+        "value": 45
+      },
+      "noise": {
+        "value": 12
+      },
+      "dustpm10": {
+        "value": 42
+      },
+      "dustpm25": {
+        "value": 52
+      },
+      "co2": {
+        "value": 12
+      }
+    },
     "effective_time_frame": {
       "date_time": "2016-05-31T02:24:29.000Z"
-    },
-    "humidity": {
-      "value": 74,
-      "unit": "%"
-    },
-    "temperature": {
-      "value": 45,
-      "unit": "C"
-    },
-    "noise": {
-      "value": 12,
-      "unit": "dB"
-    },
-    "dustpm10": {
-      "value": 42,
-      "unit": "ppm"
-    },
-    "dustpm25": {
-      "value": 52,
-      "unit": "ppm"
-    },
-    "co2": {
-      "value": 12,
-      "unit": "ppm"
     }
   }
 }</code></pre>
@@ -65,7 +61,7 @@ curl -X POST -H <span class="s2">"Content-Type: application/json"</span> -d <spa
 <blockquote>
 <p>Http Request to send values</p>
 </blockquote>
-<pre class="highlight shell"><code>GET /api/token/deviceid HTTP/1.1
+<pre class="highlight shell"><code>GET /api/things/{token}/{deviceid} HTTP/1.1
 Host: healthnow.herokuapp.com
 </code></pre>
 <blockquote>
@@ -73,89 +69,81 @@ Host: healthnow.herokuapp.com
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># Sample Request</span>
 <code>
-curl GET https://healthnow.herokuapp.com/api/airparams/fhkjfhxfdjhph/testid</code></pre>
+curl GET https://healthnow.herokuapp.com/api/things/fhkjfhxfdjhph/testid</code></pre>
 
 <pre class="highlight json">
   <span class="c"># Sample Response</span>
   <code>[
   [
   {
-    "_id": "58163b729b9bc003002fe0a7",
-    "device": {
-      "_id": "5814834485866103009e8db0",
-      "name": "test",
-      "deviceID": "testid"
-    },
-    "__v": 0,
-    "created": "2016-10-30T18:26:58.634Z",
-    "body": {
-      "effective_time_frame": {
-        "date_time": "2016-05-31T02:24:29.000Z"
-      },
-      "humidity": {
-        "value": 74,
-        "unit": "%"
-      },
-      "temperature": {
-        "value": 45,
-        "unit": "C"
-      },
-      "noise": {
-        "value": 12,
-        "unit": "dB"
-      },
-      "dustpm10": {
-        "value": 42,
-        "unit": "ppm"
-      },
-      "dustpm25": {
-        "value": 52,
-        "unit": "ppm"
-      },
-      "co2": {
-        "value": 12,
-        "unit": "ppm"
-      }
-    }
+  "__v": 0,
+  "device": {
+    "_id": "58a094bb40701ab003002315",
+    "name": "test",
+    "deviceID": "thing"
   },
-  {
-    "_id": "58163b099b9bc003002fe0a6",
-    "device": {
-      "_id": "5814834485866103009e8db0",
-      "name": "test",
-      "deviceID": "testid"
-    },
-    "__v": 0,
-    "created": "2016-10-30T18:25:13.500Z",
-    "body": {
-      "effective_time_frame": {
-        "date_time": "2016-05-31T02:24:29.000Z"
-      },
-      "humidity": {
-        "value": 524,
-        "unit": "%"
+  "_id": "58a09c335227a0500f8ce1bf",
+  "created": "2017-02-12T17:32:35.345Z",
+  "body": {
+    "data": {
+      "humidi": {
+        "value": 74
       },
       "temperature": {
-        "value": 425,
-        "unit": "C"
+        "value": 45
       },
       "noise": {
-        "value": 152,
-        "unit": "dB"
+        "value": 12
       },
       "dustpm10": {
-        "value": 142,
-        "unit": "ppm"
+        "value": 42
       },
       "dustpm25": {
-        "value": 152,
-        "unit": "ppm"
+        "value": 52
       },
       "co2": {
-        "value": 142,
-        "unit": "ppm"
+        "value": 12
       }
+    },
+    "effective_time_frame": {
+      "date_time": "2016-05-31T02:24:29.000Z"
     }
   }
+},
+  {
+  "__v": 0,
+  "device": {
+    "_id": "58a094bb40701ab003002315",
+    "name": "test",
+    "deviceID": "thing"
+  },
+  "_id": "58a09c335227a0500f8ce100",
+  "created": "2017-02-12T17:32:35.345Z",
+  "body": {
+    "data": {
+      "humidi": {
+        "value": 84
+      },
+      "temperature": {
+        "value": 95
+      },
+      "noise": {
+        "value": 22
+      },
+      "dustpm10": {
+        "value": 42
+      },
+      "dustpm25": {
+        "value": 52
+      },
+      "co2": {
+        "value": 12
+      }
+    },
+    "effective_time_frame": {
+      "date_time": "2016-05-31T02:24:29.000Z"
+    }
+  }
+}
 ]
 ]</code></pre>

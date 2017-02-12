@@ -12,18 +12,27 @@ var path = require('path'),
  * Create an device
  */
 exports.create = function (req, res) {
-  var device = new Device(req.body);
-  device.user = req.user;
 
-  device.save(function (err) {
-    if (err) {
+  deviceBydeviceLabel(req,function(err){
+    if(err){
       return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.json(device);
+        message:err
+          })
+      }else{
+        var device = new Device(req.body);
+        device.user = req.user;
+
+        device.save(function (err) {
+          if (err) {
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+            res.json(device);
+          }
+        });
     }
-  });
+  }) 
 };
 
 /**
@@ -47,7 +56,7 @@ exports.update = function (req, res) {
   var device = req.device;
 
   device.name = req.body.name;
-  device.deviceID = req.body.deviceID;
+  device.deviceLabel = req.body.deviceLabel;
 
   device.save(function (err) {
     if (err) {
@@ -96,6 +105,20 @@ exports.list = function (req, res) {
 /**
  * device middleware
  */
+var deviceBydeviceLabel=function(req,callback){
+  var device=req.body
+  Device.findOne({deviceLabel:device.deviceLabel,user:req.user._id})
+  .exec(function (err, dvice) {
+    if (err) {
+        callback('database err');
+    }
+    else if (dvice) {
+        callback("Device Label already exists");
+    }else{
+      callback(null)
+    }
+  });
+}
 
 exports.deviceByID = function (req, res, next, id) {
 

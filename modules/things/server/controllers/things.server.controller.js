@@ -5,97 +5,95 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  AirParam = mongoose.model('AirParam'),
+  Thing = mongoose.model('Thing'),
   Device=mongoose.model('Device'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
   var db = mongoose.connection;
 /**
- * Create an airparam
+ * Create an thing
  */
 exports.create = function (req, res) {
-  var airparam = new AirParam(req.body);
-  //airparam.user = req.user;
+  var thing = new Thing(req.body);
 
-  airparam.save(function (err) {
+  thing.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(airparam);
+      res.json(thing);
     }
   });
 };
 
 /**
- * Show the current airparam
+ * Show the current thing
  */
 exports.read = function (req, res) {
   // convert mongoose document to JSON
-  var airparam = req.airparam ? req.airparam.toJSON() : {};
+  var thing = req.thing ? req.thing.toJSON() : {};
 
-  // Add a custom field to the airparam, for determining if the current User is the "owner".
-  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the airparam model.
-  airparam.isCurrentUserOwner = !!(req.user && airparam.user && airparam.user._id.toString() === req.user._id.toString());
+  // Add a custom field to the thing, for determining if the current User is the "owner".
+  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the thing model.
+  thing.isCurrentUserOwner = !!(req.user && thing.user && thing.user._id.toString() === req.user._id.toString());
 
-  res.json(airparam);
+  res.json(thing);
 };
 
 /**
- * Update an airparam
+ * Update an thing
  */
 exports.update = function (req, res) {
-  var airparam = req.airparam;
+  var thing = req.thing;
 
-  airparam.device = req.body.device;
-  //airparam.bodyWeight.value = req.body.bodyWeight.value;
+  thing.device = req.body.device;
+  //thing.bodyWeight.value = req.body.bodyWeight.value;
 
-  airparam.save(function (err) {
+  thing.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(airparam);
+      res.json(thing);
     }
   });
 };
 
 /**
- * Delete an airparam
+ * Delete an thing
  */
 exports.delete = function (req, res) {
-  var airparam = req.airparam;
+  var thing = req.thing;
 
-  airparam.remove(function (err) {
+  thing.remove(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(airparam);
+      res.json(thing);
     }
   });
 };
 
 /**
- * List of airparams
+ * List of things
  */
 exports.list = function (req, res) {
-  AirParam.find({device:req.body.device._id}).sort('-created').populate('device','deviceID name').exec(function (err, airparams) {
+  Thing.find({device:req.body.device._id}).sort('-created').populate('device','deviceLabel name').exec(function (err, things) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      console.log(airparams)
-      res.json(airparams);
+      res.json(things);
     }
   });
 };
 
 /**
- * airparam middleware
+ * thing middleware
  */
 
 exports.userByToken = function (req, res, next, token) {
@@ -117,9 +115,8 @@ exports.userByToken = function (req, res, next, token) {
   });
 };
 
-exports.deviceBydeviceID = function (req, res, next,deviceID) {
-  console.log(deviceID,req.user._id)
-    Device.findOne({deviceID:deviceID,user:req.user._id}).select('deviceID name').exec(function (err, device) {
+exports.deviceByDeviceLabel = function (req, res, next,deviceLabel) {
+    Device.findOne({deviceLabel:deviceLabel,user:req.user._id}).select('deviceLabel name').exec(function (err, device) {
     if (err) {
       console.log(err)
       return res.status(400).send({
@@ -130,31 +127,29 @@ exports.deviceBydeviceID = function (req, res, next,deviceID) {
         message: 'Invalid device'
       });
     }
-    console.log(device);
-    
-    //console.log(device)
+    //console.log(device);
     req.body.device=device;
     next();
   });
 };
 
-exports.airparamByID = function (req, res, next, id) {
+exports.thingByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'AirParam is invalid'
+      message: 'Thing is invalid'
     });
   }
 
-  AirParam.findById(id).populate('device.deviceID').exec(function (err, airparam) {
+  Thing.findById(id).populate('device.deviceLabel').exec(function (err, thing) {
     if (err) {
       return next(err);
-    } else if (!airparam) {
+    } else if (!thing) {
       return res.status(404).send({
-        message: 'No airparam with that identifier has been found'
+        message: 'No thing with that identifier has been found'
       });
     }
-    req.airparam = airparam;
+    req.thing = thing;
     next();
   });
 };

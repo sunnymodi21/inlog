@@ -14,7 +14,7 @@ var DeviceSchema = new Schema({
       type:String,
       required: 'Please give a name for Device'
   },
-  deviceID: {
+  deviceLabel: {
       type:String,
       required: 'Please give a Device ID'
   },

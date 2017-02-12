@@ -1,12 +1,15 @@
 <div  ng-repeat="device in vm.devices | filter:query">   
-								   <div class="col-sm-3 col-md-3">
+								   <div class="col-sm-4 col-md-4">
                                        
     <div class="thumbnail">
        <div class="caption">
-           
-                <h3 style="word-wrap: break-word">{{device.name}}</h3>
-           
-		</div>	
+                <div col-sm-3>
+                        <label>Device Name</label>
+                        <p class="lead" ng-bind="device.name"></p>
+                        <label>Device Label</label>
+                        <p class="lead" ng-bind="device.deviceLabel"></p>
+                </div>
+        </div>	
 		<hr role="separator" class="divider">
             <p align="center">
                 <a class="btn btn-link" ng-click="vm.openViewModal(device._id)">
