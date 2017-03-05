@@ -3,8 +3,8 @@
 /**
  * Module dependencies
  */
-//var devicesPolicy = require('../policies/devices.server.policy'),
- var devices = require('../controllers/devices.server.controller');
+  var devicesPolicy = require('../policies/devices.server.policy'),
+      devices = require('../controllers/devices.server.controller');
 
 module.exports = function (app) {
   // devices collection routes

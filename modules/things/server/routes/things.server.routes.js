@@ -3,8 +3,8 @@
 /**
  * Module dependencies
  */
-//var thingsPolicy = require('../policies/things.server.policy'),
- var things = require('../controllers/things.server.controller');
+  var thingsPolicy = require('../policies/things.server.policy'),
+      things = require('../controllers/things.server.controller');
 
 module.exports = function (app) {
   // things collection routes
@@ -17,6 +17,9 @@ module.exports = function (app) {
     .get(things.read)
     .put(things.update)
     .delete(things.delete);
+
+  app.route('/api/things/:devicelabel')
+    .get(things.list)
 
   // Finish by binding the thing middleware
   app.param('token', things.userByToken);

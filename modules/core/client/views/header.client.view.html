@@ -20,7 +20,13 @@
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
       <li ui-sref-active="active">
-        <a ui-sref="devices">Add Devices</a>
+        <a ui-sref="devices.create">Add Devices</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="testingapis">Test API</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="charts">View Data Charts</a>
       </li>
        <li ui-sref-active="active">
         <a ui-sref="samples">Sample API</a>

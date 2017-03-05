@@ -1,0 +1,51 @@
+<style>
+
+.line {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 2px;
+	clip-path: url(#clip);
+}
+
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 60px;					
+    height: 28px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
+
+circle {
+  fill: steelblue;
+  stroke: steelblue;
+  opacity:.5;
+}
+</style>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<section>
+  <div  ng-repeat="device in vm.devices | filter:query">   
+    <div class="col-sm-4 col-md-4">
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label class="control-label" for="type">Type</label>
+            <select name="type" type="text" class="form-control" ng-model="device.type" ng-options="type for type in device.types" id="type"></select>
+          </div>
+        <svg id="chart-{{$index}}" chart-iot data="device.data" index="$index" type="device.type" width="400" height="300"></svg>
+        <label style="margin-left:160px">Device:{{device.name}}</label>
+      </div>
+    </div>
+  </div>
+  </div>  
+ </div>
+</section>
