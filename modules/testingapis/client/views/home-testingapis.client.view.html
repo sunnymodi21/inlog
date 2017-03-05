@@ -6,9 +6,19 @@
 <p>Replace token with your token and device label with created device label</p>
 </blockquote>
 <pre class="highlight shell"><code style="font-size: 15px">
+  Replace URL:/api/things/<span style="font-weight: bold; font-size: 15px">{token}/{device label}</span> with
   Sample: /api/things/<span style="font-weight: bold; font-size: 15px">d4dec800473dd1df8d28e6a626f5e5e1/air</span>
   </code></pre>
-
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label class="control-label" for="method">Device Names: Labels</label>
+      <ol>
+          <li ng-repeat="device in vm.devices">
+            {{device.name}} : {{device.deviceLabel}}
+          </li>
+        </ol>
+    </div>
+  </div>
   <div class="col-md-12">
     <form name="vm.form.apiForm" class="form-horizontal" ng-submit="vm.send()">
       <fieldset>

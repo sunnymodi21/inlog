@@ -3,10 +3,10 @@
 
 
 angular.module('charts')
-    .directive('chartIot',['d3Service',chatIot])
+    .directive('chartIot',chatIot)
 
 
-function chatIot(d3Service) {
+function chatIot() {
   var directive= {
     restrict: 'EA',
     transclude: true,
@@ -23,12 +23,10 @@ function chatIot(d3Service) {
   function link(scope) {
     
         scope.$watch('type',function(newVals,oldVals){
+            
             if(newVals!=oldVals){
-                console.log('here')
-                d3Service.d3().then(function(d3) {
                     d3.selectAll("#chart-"+scope.index+" > *").remove();
                     createGraph();
-                });
             }
         })
         function createGraph(){

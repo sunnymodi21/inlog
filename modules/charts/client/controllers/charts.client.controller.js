@@ -21,7 +21,6 @@
           })
           getData.query(function(res){
             device.data=res;
-            console.log(device)
             device.types=Object.keys(device.data[0].body.data)
             device.type=device.types[0]
           });
