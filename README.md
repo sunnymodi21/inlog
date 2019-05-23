@@ -1,5 +1,5 @@
 
-Inlog is a full-stack JavaScript open-source solution built on MEANJS, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
+Inlog is a full-stack JavaScript open-source solution built on MEANJS. Inlog is a complete dashboard where you can create unlimited IOT devices and get insights for each device.
 
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a Inlog application:
@@ -241,19 +241,6 @@ After `cf push` completes you will see the URL to your running MEANJS applicatio
     instances: 1/1
     usage: 128M x 1 instances
     urls: mean-humbler-frappa.mybluemix.net
-
-Open your browser and go to that URL and your should see your MEANJS app running!
-
-###  Deploying MEANJS To IBM Bluemix
-IBM Bluemix is a Cloud Foundry based PaaS.  By clicking the button below you can signup for Bluemix and deploy
-a working copy of MEANJS to the cloud without having to do the steps above.
-
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https%3A%2F%2Fgithub.com%2Fmeanjs%2Fmean)
-
-After the deployment is finished you will be left with a copy of the MEANJS code in your own private Git repo
-in Bluemix complete with a pre-configured build and deploy pipeline.  Just clone the Git repo, make your changes, and
-commit them back.  Once your changes are committed, the build and deploy pipeline will run automatically deploying
-your changes to Bluemix.
 
 ## Credits
 
